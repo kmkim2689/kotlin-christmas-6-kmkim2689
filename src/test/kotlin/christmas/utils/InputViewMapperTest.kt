@@ -8,11 +8,12 @@ class InputViewMapperTest {
 
     @Test
     fun `문자열 형태로 입력받은 날이 1에서 31 사이일 경우 정상적으로 정수 형태 반환`() {
-        val input = "31"
-        val actualValue = input.toDayNumberOrThrowIllegalArgumentException()
-        val expectedValue = 31
-
-        assertThat(actualValue).isEqualTo(expectedValue)
+        val inputList = listOf("1", "2", "3", "30", "31")
+        val expectedValues = listOf(1, 2, 3, 30, 31)
+        inputList.zip(expectedValues) { inputText, expectedValue ->
+            val actualValue = inputText.toDayNumberOrThrowIllegalArgumentException()
+            assertThat(actualValue).isEqualTo(expectedValue)
+        }
     }
 
     @Test
