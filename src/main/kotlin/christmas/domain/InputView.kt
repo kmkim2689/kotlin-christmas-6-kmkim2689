@@ -12,7 +12,7 @@ object InputView {
         return getValidatedNumberOfDay()
     }
 
-    fun getValidatedNumberOfDay(): Int = try {
+    private fun getValidatedNumberOfDay(): Int = try {
         println(STEP_INPUT_DAY_OF_RESERVATION)
         val numberOfDay = Console.readLine()
         numberOfDay.toDayNumberOrThrowIllegalArgumentException()
