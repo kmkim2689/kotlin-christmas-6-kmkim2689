@@ -1,4 +1,4 @@
-package christmas.domain
+package christmas.view
 
 import camp.nextstep.edu.missionutils.Console
 import christmas.constants.ExceptionMessages.ERROR
