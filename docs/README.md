@@ -5,13 +5,14 @@
 
 ## 구현 사항
 ### 0. 카테고리 및 메뉴에 대한 Enum Class 구현
-- [ ] Category Enum Class : 카테고리명과 평일/주말 할인가격에 대한 정보를 담고 있음
-- [ ] Menu Enum Class : Category와 가격으로 구성
+- [x] Category Enum Class : 카테고리명과 평일/주말 할인가격에 대한 정보를 담고 있음
+- [x] Menu Enum Class : Category와 가격으로 구성
 
 ### 1. 고객이 12월 중 방문일을 입력하도록 하는 기능 (View → Controller → Domain)
 - [ ] InputView 클래스에서 기능 구현 
   - [ ] 1부터 31까지의 정수만 입력할 수 있도록 하며, 그 이외의 값을 입력 시 예외 처리
-  - [ ] 1부터 31까지 입력했는지에 관한 검증 로직은 InputViewValidation 클래스에서 구현
+  - [ ] 문자열 형태로 입력받은 값을 정수로 변환하는 로직은 InputViewMapper에서 확장함수로 구현
+  - [ ] 1부터 31까지 입력했는지에 관한 검증 로직은 InputViewValidatior 클래스에서 구현
 - [ ] 입력한 값을 Controller가 OrderInfo 클래스에 저장
 - [ ] OrderInfo 클래스에서 입력받은 일에 따른 요일을 계산하는 로직
   - [ ] 7로 나눈 나머지가 1일 때 금요일 ~ 나누어 떨어질 때 목요일
@@ -25,10 +26,11 @@
     - [ ] 입력 시 공백이 없어야 한다. 하지만 trim으로 처리하여 공백이 있어도 예외 처리하지 않고 공백을 제거하여 처리한다.
     - [ ] 수량으로 1 이상 20 이하의 정수만 입력할 수 있도록 한다.(전체 주문 최대 20개)
     - [ ] 총 수량이 20 초과가 될 수 없도록 한다.
-  - [ ] 검증 로직은 InputViewValidation 클래스에서 구현
+  - [ ] 검증 로직은 InputViewValidatior 클래스에서 구현
 - [ ] 입력된 값을 Controller가 OrderInfo 클래스에 저장
   - [ ] 메뉴명과 수량으로 이뤄진 Menu 데이터 클래스 형태로 관리
   - [ ] 이 과정에서, split를 활용하여 ","와 "-"를 기준으로 주문 메뉴와 수량을 분리하여 저장
+  - [ ] 수량은 정수로 변환하여 저장하는데, 문자열 형태로 입력받은 값을 정수로 변환하는 로직은 InputViewMapper에서 확장함수로 구현
 
 ### 3. 고객이 주문한 메뉴를 표출하는 기능 (Domain → Controller → View)
 - [ ] OutputView 클래스에서 출력 구현
