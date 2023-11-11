@@ -4,9 +4,9 @@
 
 
 ## 구현 사항
-### 0. 메뉴 카테고리 별 Enum Class 구현
-- [ ] Enum Class는 메뉴명(String), 가격(Int), 평일 할인 여부(Boolean), 주말 할인 여부(Boolean)으로 구성
-- [ ] Appetizer, Main, Dessert, Beverage 카테고리가 각각 부모 클래스로 구성되며, 각 카테고리 내부의 메뉴를 자식 클래스로 구현한다.
+### 0. 카테고리 및 메뉴에 대한 Enum Class 구현
+- [ ] Category Enum Class : 카테고리명과 평일/주말 할인가격에 대한 정보를 담고 있음
+- [ ] Menu Enum Class : Category와 가격으로 구성
 
 ### 1. 고객이 12월 중 방문일을 입력하도록 하는 기능 (View → Controller → Domain)
 - [ ] InputView 클래스에서 기능 구현 
