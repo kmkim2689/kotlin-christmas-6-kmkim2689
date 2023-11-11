@@ -25,6 +25,22 @@ class InputViewMapperTest {
     }
 
     @Test
+    fun `문자열 형태로 입력받은 날이 소수일 경우 예외 발생`() {
+        val input = "3.2"
+        assertThrows<IllegalArgumentException> {
+            val actualValue = input.toDayNumberOrThrowIllegalArgumentException()
+        }
+    }
+
+    @Test
+    fun `문자열 형태로 입력받은 날이 음수일 경우 예외 발생`() {
+        val input = "-1"
+        assertThrows<IllegalArgumentException> {
+            val actualValue = input.toDayNumberOrThrowIllegalArgumentException()
+        }
+    }
+
+    @Test
     fun `문자열 형태로 입력받은 날이 정수로 변환할 수 없는 문자열인 경우 예외 발생`() {
         val input = "1요일"
         assertThrows<IllegalArgumentException> {
