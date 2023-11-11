@@ -9,8 +9,8 @@
 - [x] Menu Enum Class : Category와 가격으로 구성
 
 ### 1. 고객이 12월 중 방문일을 입력하도록 하는 기능 (View → Controller → Domain)
-- [ ] InputView 클래스에서 기능 구현
-  - [ ] InputView에서 안내문구를 출력하고 값을 입력받아 정수 형태로 반환 
+- [x] InputView 클래스에서 기능 구현
+  - [x] InputView에서 안내문구를 출력하고 값을 입력받아 정수 형태로 반환 
   - [x] 1부터 31까지의 정수만 입력할 수 있도록 하며, 그 이외의 값을 입력 시 예외 처리
   - [x] 문자열 형태로 입력받은 값을 검증하고 정수로 변환하는 로직은 InputViewMapper에서 확장함수로 구현
 - [ ] 입력한 값을 Controller가 OrderInfo 클래스에 저장
