@@ -1,17 +1,11 @@
 package christmas.controller
 
-import christmas.constants.Constants.LINE_FEED
-import christmas.constants.Constants.TITLE_ORDERS
-import christmas.constants.Constants.UNIT_AMOUNT
-import christmas.constants.StepMessages.STEP_DAY
-import christmas.constants.StepMessages.STEP_MONTH_DECEMBER
-import christmas.constants.StepMessages.STEP_ON
-import christmas.constants.StepMessages.STEP_PREVIEW
+import christmas.constants.Constants.UNIT_PRICE
 import christmas.constants.StepMessages.STEP_START_RESERVATION
-import christmas.domain.OrderItem
 import christmas.domain.ReservationInfo
 import christmas.view.InputView
 import christmas.view.OutputView
+import java.text.DecimalFormat
 
 object ReservationController {
     fun startReservation() {
@@ -23,6 +17,8 @@ object ReservationController {
         OutputView.printOrders(reservationInfo)
     }
 
-
-
+    fun Int.toDecimalFormat(): String {
+        val decimalFormat = DecimalFormat("#,###$UNIT_PRICE")
+        return decimalFormat.format(this)
+    }
 }

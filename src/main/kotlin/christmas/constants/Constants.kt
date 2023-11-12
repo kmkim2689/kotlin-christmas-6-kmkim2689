@@ -60,6 +60,7 @@ object Constants {
     const val TITLE_ORDERS = "<주문 메뉴>"
 
     const val UNIT_AMOUNT = "개"
+    const val UNIT_PRICE = "원"
 
     const val LINE_FEED = "\n"
 }
