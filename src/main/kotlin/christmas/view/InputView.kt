@@ -24,7 +24,7 @@ object InputView {
 
     private fun getValidatedNumberOfDay(): Int = try {
         println(STEP_INPUT_DAY_OF_RESERVATION)
-        val numberOfDay = Console.readLine()
+        val numberOfDay = Console.readLine().trim()
         numberOfDay.toDayNumberOrThrowIllegalArgumentException()
     } catch (e: IllegalArgumentException) {
         println(getErrorMessage(e.message))
@@ -34,7 +34,7 @@ object InputView {
     private fun getValidatedOrderList(): List<OrderItem> = try {
         println(STEP_INPUT_ORDER)
 
-        val order = Console.readLine()
+        val order = Console.readLine().trim()
             .toOrderListOrThrowIllegalArgumentException()
         val orderItems = order.map {
             it.toOrderItemOrThrowIllegalArgumentException()
