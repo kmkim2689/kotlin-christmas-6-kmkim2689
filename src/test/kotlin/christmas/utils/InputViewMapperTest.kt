@@ -74,7 +74,31 @@ class InputViewMapperTest {
                 OrderItem(Menu.TBONE_STEAK, 1),
                 OrderItem(Menu.CHOCOLATE_CAKE, 2),
             )
-            val actualResult = input.map { it.toOrderItemOrThrowIllegalArgumentException() }
+            input.map { it.toOrderItemOrThrowIllegalArgumentException() }
+        }
+    }
+
+    @Test
+    fun `주문 메뉴 입력 시 유효하지 않은 메뉴명을 입력했을 때 예외 발생`() {
+        assertThrows<IllegalArgumentException> {
+            val input = listOf("양송이-2", "티본스테이크-1", "초코케이크-2")
+            input.map { it.toOrderItemOrThrowIllegalArgumentException() }
+        }
+    }
+
+    @Test
+    fun `주문 메뉴 입력 시 주문 수량으로 문자열을 입력했을 때 예외 발생`() {
+        assertThrows<IllegalArgumentException> {
+            val input = listOf("양송이-2개", "티본스테이크-1", "초코케이크-2")
+            input.map { it.toOrderItemOrThrowIllegalArgumentException() }
+        }
+    }
+
+    @Test
+    fun `주문 메뉴 입력 시 주문 수량으로 소수를 입력했을 때 예외 발생`() {
+        assertThrows<IllegalArgumentException> {
+            val input = listOf("양송이-2.5", "티본스테이크-1", "초코케이크-2")
+            input.map { it.toOrderItemOrThrowIllegalArgumentException() }
         }
     }
 
