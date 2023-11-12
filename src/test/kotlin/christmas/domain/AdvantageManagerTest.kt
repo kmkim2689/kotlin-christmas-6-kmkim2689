@@ -26,8 +26,7 @@ class AdvantageManagerTest {
         advantageManager = AdvantageManager(totalPrice, reservationInfo)
 
         val actualValue = advantageManager.getFreeChampagneOrNot()
-        val expectedValue = true
-        assertThat(actualValue).isEqualto(expectedValue)
+        assertThat(actualValue).isTrue()
     }
 
     @Test
@@ -43,7 +42,6 @@ class AdvantageManagerTest {
         advantageManager = AdvantageManager(totalPrice, reservationInfo)
 
         val actualValue = advantageManager.getFreeChampagneOrNot()
-        val expectedValue = false
-        assertThat(actualValue).isEqualto(expectedValue)
+        assertThat(actualValue).isFalse()
     }
 }

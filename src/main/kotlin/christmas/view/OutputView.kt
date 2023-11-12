@@ -19,4 +19,8 @@ object OutputView {
 
         println()
     }
+
+    fun printTotalPriceBeforeDiscounts(price: String) {
+        println(price)
+    }
 }

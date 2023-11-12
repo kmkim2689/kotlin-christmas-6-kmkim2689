@@ -63,4 +63,9 @@ object Constants {
     const val UNIT_PRICE = "원"
 
     const val LINE_FEED = "\n"
+
+    const val CHAMPAGNE_PRESENTATION_PRICE = 120000
+    const val CHAMPAGNE_PRESENTATION = "샴페인 1개"
+
+    const val NONE = "없음"
 }
