@@ -1,5 +1,7 @@
 package christmas.utils
 
+import christmas.domain.Menu
+import christmas.domain.OrderItem
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -45,6 +47,34 @@ class InputViewMapperTest {
         val input = "1요일"
         assertThrows<IllegalArgumentException> {
             val actualValue = input.toDayNumberOrThrowIllegalArgumentException()
+        }
+    }
+
+    @Test
+    fun `주문 메뉴 입력 시 정상적으로 입력된 경우 주문 리스트 반환`() {
+        val input = listOf("양송이수프-2", "티본스테이크-1", "초코케이크-2")
+        val expectedResult = listOf(
+            OrderItem(Menu.MUSHROOM_SOUP, 2),
+            OrderItem(Menu.TBONE_STEAK, 1),
+            OrderItem(Menu.CHOCOLATE_CAKE, 2),
+        )
+        val actualResult = input.map {
+            it.toOrderItemOrThrowIllegalArgumentException()
+        }
+
+        assertThat(actualResult).isEqualTo(expectedResult)
+    }
+
+    @Test
+    fun `주문 메뉴 입력 시 -를 기준으로 메뉴명과 수량을 제대로 입력하지 않았을 때 예외 발생`() {
+        assertThrows<IllegalArgumentException> {
+            val input = listOf("양송이수프+2", "티본스테이크-1", "초코케이크-2")
+            val expectedResult = listOf(
+                OrderItem(Menu.MUSHROOM_SOUP, 2),
+                OrderItem(Menu.TBONE_STEAK, 1),
+                OrderItem(Menu.CHOCOLATE_CAKE, 2),
+            )
+            val actualResult = input.map { it.toOrderItemOrThrowIllegalArgumentException() }
         }
     }
 
