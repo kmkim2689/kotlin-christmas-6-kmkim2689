@@ -56,4 +56,10 @@ object Constants {
 
     const val SEPARATOR_ORDER_ITEM = ","
     const val SEPARATOR_NAME_AMOUNT = "-"
+
+    const val TITLE_ORDERS = "<주문 메뉴>"
+
+    const val UNIT_AMOUNT = "개"
+
+    const val LINE_FEED = "\n"
 }
