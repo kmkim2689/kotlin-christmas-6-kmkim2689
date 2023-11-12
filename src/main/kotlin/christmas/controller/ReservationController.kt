@@ -14,7 +14,10 @@ object ReservationController {
         val orderItems = InputView.getOrderList()
         val reservationInfo = ReservationInfo(dayOfReservation, orderItems)
 
-        OutputView.printOrders(reservationInfo)
+        OutputView.apply {
+            printOrders(reservationInfo)
+            printTotalPriceBeforeDiscounts(reservationInfo.getTotalPriceBeforeDiscounts().toDecimalFormat())
+        }
     }
 
     fun Int.toDecimalFormat(): String {

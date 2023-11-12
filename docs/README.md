@@ -38,10 +38,10 @@
   - [x] `${메뉴명} ${수량}개` 형태로 표출한다.
 
 ### 4. 할인 전 총주문 금액을 표출하는 기능 (Domain → Controller → View)
-- [ ] ReservationInfo 클래스에서 총 주문 금액을 계산하는 메소드 구현
-  - [ ] Menu 데이터 클래스로 이뤄진 리스트를 순회하며 총 금액을 더해 최종 금액을 산출
-- [ ] Controller에서 1,000단위로 "," 표식 추가
-- [ ] OutputView 클래스에서 출력 구현
+- [x] ReservationInfo 클래스에서 총 주문 금액을 계산하는 메소드 구현
+  - [x] Menu 데이터 클래스로 이뤄진 리스트를 순회하며 총 금액을 더해 최종 금액을 산출
+- [x] Controller에서 1,000단위로 "," 표식 추가
+- [x] OutputView 클래스에서 출력 구현
   
 
 ### 5. 증정 메뉴를 표출하는 기능 (Domain → Controller → View)
