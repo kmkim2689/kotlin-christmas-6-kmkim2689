@@ -1,6 +1,7 @@
 package christmas.view
 
 import christmas.constants.Constants
+import christmas.constants.Constants.LINE_FEED
 import christmas.constants.StepMessages
 import christmas.domain.OrderItem
 import christmas.domain.ReservationInfo
@@ -21,6 +22,10 @@ object OutputView {
     }
 
     fun printTotalPriceBeforeDiscounts(price: String) {
-        println(price)
+        println("$price$LINE_FEED")
+    }
+
+    fun printPresentationResult(result: String) {
+        println("$result$LINE_FEED")
     }
 }
