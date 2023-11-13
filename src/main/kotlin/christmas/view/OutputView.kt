@@ -57,4 +57,9 @@ object OutputView {
         println(TITLE_PRICE_AFTER_DISCOUNT)
         println("$amount$LINE_FEED")
     }
+
+    fun printBadge(badge: Badge) {
+        println(TITLE_BADGE)
+        println(badge.badgeName)
+    }
 }
