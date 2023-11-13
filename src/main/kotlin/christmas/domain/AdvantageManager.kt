@@ -1,12 +1,27 @@
 package christmas.domain
 
+import christmas.constants.Constants.ADVANTAGE_DISCOUNT_CHRISTMAS_DDAY
 import christmas.constants.Constants.ADVANTAGE_CRITERION_PRICE
+import christmas.constants.Constants.ADVANTAGE_DISCOUNT_EXCLUSIVE
+import christmas.constants.Constants.ADVANTAGE_DISCOUNT_WEEKDAY
+import christmas.constants.Constants.ADVANTAGE_DISCOUNT_WEEKEND
+import christmas.constants.Constants.ADVANTAGE_PRESENTATION
+import christmas.constants.Constants.BADGE_SANTA_TOTAL_ADVANTAGE
+import christmas.constants.Constants.BADGE_STAR_TOTAL_ADVANTAGE
+import christmas.constants.Constants.BADGE_TREE_TOTAL_ADVANTAGE
 import christmas.constants.Constants.CATEGORY_DESSERT
+import christmas.constants.Constants.CATEGORY_DISCOUNT_PRICE
 import christmas.constants.Constants.CATEGORY_MAIN
 import christmas.constants.Constants.CHAMPAGNE_PRESENTATION
 import christmas.constants.Constants.CHAMPAGNE_PRESENTATION_PRICE
+import christmas.constants.Constants.DAYS_PER_WEEK
+import christmas.constants.Constants.DAY_CHRISTMAS
+import christmas.constants.Constants.DAY_MOD_EXCLUSIVE
+import christmas.constants.Constants.DAY_MOD_WEEKEND_END
+import christmas.constants.Constants.DAY_MOD_WEEKEND_START
 import christmas.constants.Constants.DISCOUNT_DDAY_DEFAULT
 import christmas.constants.Constants.DISCOUNT_DDAY_PER_DAY
+import christmas.constants.Constants.DISCOUNT_EXCLUSIVE
 import christmas.constants.Constants.NONE
 import christmas.constants.Constants.PRICE_CHAMPAGNE
 
@@ -32,7 +47,7 @@ class AdvantageManager(
     fun getTotalPriceAfterDiscount(): Int {
         val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
         return totalPrice - calculatedTotalAdvantages.sumOf {
-            if (it.advantageName != "증정 이벤트") it.advantageAmount else 0
+            if (it.advantageName != ADVANTAGE_PRESENTATION) it.advantageAmount else 0
         }
     }
 
@@ -50,63 +65,67 @@ class AdvantageManager(
     }
 
     fun getPresentationEventAmount() = when (getFreeChampagneOrNot()) {
-        true -> AdvantageItem("증정 이벤트", PRICE_CHAMPAGNE)
-        false -> AdvantageItem("증정 이벤트")
+        true -> AdvantageItem(ADVANTAGE_PRESENTATION, PRICE_CHAMPAGNE)
+        false -> AdvantageItem(ADVANTAGE_PRESENTATION)
     }
 
     fun getBadge(totalAdvantageAmount: Int): Badge = when {
-        totalAdvantageAmount >= 20000 -> Badge.SANTA
-        totalAdvantageAmount >= 10000 -> Badge.TREE
-        totalAdvantageAmount >= 5000 -> Badge.STAR
+        totalAdvantageAmount >= BADGE_SANTA_TOTAL_ADVANTAGE -> Badge.SANTA
+        totalAdvantageAmount >= BADGE_TREE_TOTAL_ADVANTAGE -> Badge.TREE
+        totalAdvantageAmount >= BADGE_STAR_TOTAL_ADVANTAGE -> Badge.STAR
         else -> Badge.NONE
     }
 
     fun getFreeChampagneOrNot() = totalPrice >= CHAMPAGNE_PRESENTATION_PRICE
 
     fun getDdayDiscount(): AdvantageItem {
-        if (dayOfReservation in 1..25) {
+        if (dayOfReservation in 1..DAY_CHRISTMAS) {
             return AdvantageItem(
-                "크리스마스 디데이 할인",
+                ADVANTAGE_DISCOUNT_CHRISTMAS_DDAY,
                 DISCOUNT_DDAY_PER_DAY * (dayOfReservation - 1) + DISCOUNT_DDAY_DEFAULT
             )
         }
-        return AdvantageItem("크리스마스 디데이 할인")
+        return AdvantageItem(ADVANTAGE_DISCOUNT_CHRISTMAS_DDAY)
     }
 
     fun getExclusiveDiscount(): AdvantageItem {
-        if (dayOfReservation % 7 == 3 || dayOfReservation == 25) {
-            return AdvantageItem("특별 할인", 1000)
+        if (dayOfReservation % DAYS_PER_WEEK == DAY_MOD_EXCLUSIVE || dayOfReservation == DAY_CHRISTMAS) {
+            return AdvantageItem(ADVANTAGE_DISCOUNT_EXCLUSIVE, DISCOUNT_EXCLUSIVE)
         }
-        return AdvantageItem("특별 할인")
+        return AdvantageItem(ADVANTAGE_DISCOUNT_EXCLUSIVE)
     }
 
     fun getWeekdayDiscount(): AdvantageItem {
-        if (dayOfReservation % 7 !in 1..2) {
-            return AdvantageItem("평일 할인", getWeekdayDiscountPrice())
+        if (dayOfReservation % DAYS_PER_WEEK !in DAY_MOD_WEEKEND_START..DAY_MOD_WEEKEND_END) {
+            return AdvantageItem(ADVANTAGE_DISCOUNT_WEEKDAY, getWeekdayDiscountPrice())
         }
-        return AdvantageItem("평일 할인")
+        return AdvantageItem(ADVANTAGE_DISCOUNT_WEEKDAY)
     }
 
     private fun getWeekdayDiscountPrice(): Int {
         var discount = 0
         reservationInfo.items.onEach {
-            if (it.menu.category.categoryName == CATEGORY_DESSERT) discount += it.amount * 2023
+            if (it.menu.category.categoryName == CATEGORY_DESSERT) {
+                discount += it.amount * CATEGORY_DISCOUNT_PRICE
+            }
         }
 
         return discount
     }
 
     fun getWeekendDiscount(): AdvantageItem {
-        if (dayOfReservation % 7 in 1..2) {
-            return AdvantageItem("주말 할인", getWeekendDiscountPrice())
+        if (dayOfReservation % DAYS_PER_WEEK in DAY_MOD_WEEKEND_START..DAY_MOD_WEEKEND_END) {
+            return AdvantageItem(ADVANTAGE_DISCOUNT_WEEKEND, getWeekendDiscountPrice())
         }
-        return AdvantageItem("주말 할인")
+        return AdvantageItem(ADVANTAGE_DISCOUNT_WEEKEND)
     }
 
     private fun getWeekendDiscountPrice(): Int {
         var discount = 0
         reservationInfo.items.onEach {
-            if (it.menu.category.categoryName == CATEGORY_MAIN) discount += it.amount * 2023
+            if (it.menu.category.categoryName == CATEGORY_MAIN) {
+                discount += it.amount * CATEGORY_DISCOUNT_PRICE
+            }
         }
 
         return discount

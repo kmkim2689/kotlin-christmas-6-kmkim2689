@@ -19,21 +19,6 @@ object Constants {
     const val MENU_RED_WINE = "레드와인"
     const val MENU_CHAMPAGNE = "샴페인"
 
-    /*val MENU_LIST = listOf(
-        MENU_MUSHROOM_SOUP,
-        MENU_TAPAS,
-        MENU_CAESAR_SALAD,
-        MENU_TBONE_STEAK,
-        MENU_BARBECUE_LIBS,
-        MENU_SEAFOOD_PASTA,
-        MENU_CHRISTMAS_PASTA,
-        MENU_CHOCOLATE_CAKE,
-        MENU_ICE_CREAM,
-        MENU_ZERO_COKE,
-        MENU_RED_WINE,
-        MENU_CHAMPAGNE
-    )*/
-
     const val PRICE_MUSHROOM_SOUP = 6000
     const val PRICE_TAPAS = 5500
     const val PRICE_CAESAR_SALAD = 8000
@@ -50,6 +35,10 @@ object Constants {
     const val CATEGORY_DISCOUNT_PRICE = 2023
 
     const val DAYS_PER_WEEK = 7
+    const val DAY_MOD_EXCLUSIVE = 3
+    const val DAY_CHRISTMAS = 25
+    const val DAY_MOD_WEEKEND_START = 1
+    const val DAY_MOD_WEEKEND_END = 2
 
     const val DAY_OF_WEEK_WEEKDAY = "weekday"
     const val DAY_OF_WEEK_WEEKEND = "weekend"
@@ -83,9 +72,20 @@ object Constants {
 
     const val DISCOUNT_DDAY_DEFAULT = 1000
     const val DISCOUNT_DDAY_PER_DAY = 100
+    const val DISCOUNT_EXCLUSIVE = 1000
 
     const val BADGE_SANTA = "산타"
     const val BADGE_TREE = "트리"
     const val BADGE_STAR = "별"
     const val BADGE_NONE = "없음"
+
+    const val BADGE_SANTA_TOTAL_ADVANTAGE = 20000
+    const val BADGE_TREE_TOTAL_ADVANTAGE = 10000
+    const val BADGE_STAR_TOTAL_ADVANTAGE = 5000
+
+    const val ADVANTAGE_PRESENTATION = "증정 이벤트"
+    const val ADVANTAGE_DISCOUNT_CHRISTMAS_DDAY = "크리스마스 디데이 할인"
+    const val ADVANTAGE_DISCOUNT_EXCLUSIVE = "특별 할인"
+    const val ADVANTAGE_DISCOUNT_WEEKDAY = "평일 할인"
+    const val ADVANTAGE_DISCOUNT_WEEKEND = "주말 할인"
 }
