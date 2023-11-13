@@ -54,6 +54,13 @@ class AdvantageManager(
         false -> AdvantageItem("증정 이벤트")
     }
 
+    fun getBadge(totalAdvantageAmount: Int): Badge = when {
+        totalAdvantageAmount >= 20000 -> Badge.SANTA
+        totalAdvantageAmount >= 10000 -> Badge.TREE
+        totalAdvantageAmount >= 5000 -> Badge.STAR
+        else -> Badge.NONE
+    }
+
     fun getFreeChampagneOrNot() = totalPrice >= CHAMPAGNE_PRESENTATION_PRICE
 
     fun getDdayDiscount(): AdvantageItem {
