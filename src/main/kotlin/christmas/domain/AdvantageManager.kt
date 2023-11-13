@@ -17,6 +17,11 @@ class AdvantageManager(
 
     private val dayOfReservation = reservationInfo.dayOfReservation
 
+    fun getTotalAdvantages(): List<AdvantageItem> {
+        if (totalPrice < ADVANTAGE_CRITERION_PRICE) return emptyList()
+        return getCalculatedTotalAdvantages()
+    }
+
     fun getTotalAdvantagePrice(): Int {
         val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
         return calculatedTotalAdvantages.sumOf {

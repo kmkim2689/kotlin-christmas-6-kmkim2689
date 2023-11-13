@@ -73,7 +73,7 @@
 - [ ] OutputView에서 출력
 
 ### 8. 할인 후 금액을 계산하고 표출하는 기능 (Domain → Controller → View)
-- [ ] Controller에서 금액 뒤에 "원"을 붙여 OutputView에 전달
+- [x] Controller에서 금액 뒤에 "원"을 붙여 OutputView에 전달
 - [ ] OutputView에서 출력
 
 ### 9. 수령할 이벤트 배지를 표출하는 기능 (Domain → Controller → View)
