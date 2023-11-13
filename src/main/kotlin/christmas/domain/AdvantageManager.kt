@@ -46,5 +46,19 @@ class AdvantageManager(
         return AdvantageItem("특별 할인")
     }
 
+    fun getWeekdayDiscount(): AdvantageItem {
+        if (dayOfReservation % 7 !in 1..2) {
+            return AdvantageItem("평일 할인", getWeekdayDiscountPrice())
+        }
+        return AdvantageItem("평일 할인")
+    }
 
+    private fun getWeekdayDiscountPrice(): Int {
+        var discount = 0
+        reservationInfo.items.onEach {
+            if (it.menu.category.categoryName == CATEGORY_DESSERT) discount += it.amount * 2023
+        }
+
+        return discount
+    }
 }
