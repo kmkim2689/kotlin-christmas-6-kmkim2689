@@ -56,11 +56,21 @@ object Constants {
 
     const val SEPARATOR_ORDER_ITEM = ","
     const val SEPARATOR_NAME_AMOUNT = "-"
+    const val SIGN_DISCOUNT = "-"
+    const val SIGN_COLON = ":"
 
     const val TITLE_ORDERS = "<주문 메뉴>"
+    const val TITLE_BEFORE_DISCOUNT = "<할인 전 총주문 금액>"
+    const val TITLE_PRESENT = "<증정 메뉴>"
+    const val TITLE_ADVANTAGES = "<혜택 내역>"
+    const val TITLE_ADVANTAGE_AMOUNT = "<총혜택 금액>"
+    const val TITLE_PRICE_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>"
+    const val TITLE_BADGE = "<12월 이벤트 배지>"
 
     const val UNIT_AMOUNT = "개"
     const val UNIT_PRICE = "원"
+
+    const val PRICE_FORMAT = "#,###$UNIT_PRICE"
 
     const val LINE_FEED = "\n"
 
@@ -68,4 +78,14 @@ object Constants {
     const val CHAMPAGNE_PRESENTATION = "샴페인 1개"
 
     const val NONE = "없음"
+
+    const val ADVANTAGE_CRITERION_PRICE = 10000
+
+    const val DISCOUNT_DDAY_DEFAULT = 1000
+    const val DISCOUNT_DDAY_PER_DAY = 100
+
+    const val BADGE_SANTA = "산타"
+    const val BADGE_TREE = "트리"
+    const val BADGE_STAR = "별"
+    const val BADGE_NONE = "없음"
 }

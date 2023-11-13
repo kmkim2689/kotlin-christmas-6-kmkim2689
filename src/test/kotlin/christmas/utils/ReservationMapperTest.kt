@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class InputViewMapperTest {
+class ReservationMapperTest {
 
     @Test
     fun `문자열 형태로 입력받은 날이 1에서 31 사이일 경우 정상적으로 정수 형태 반환`() {
@@ -102,4 +102,21 @@ class InputViewMapperTest {
         }
     }
 
+    @Test
+    fun `정수 형태의 가격을 1,000 단위의 정규 표현식 형태로 변환하는 기능 테스트`() {
+        val price = 10000
+        val actualValue = price.toDecimalFormatPrice()
+        val expectedValue = "10,000원"
+
+        assertThat(actualValue).isEqualTo(expectedValue)
+    }
+
+    @Test
+    fun `정수 형태의 가격을 음수 형태의 할인가격으로 변환하는 기능 테스트`() {
+        val price = 10000000
+        val actualValue = price.toDecimalFormatAdvantagePrice()
+        val expectedValue = "-10,000,000원"
+
+        assertThat(actualValue).isEqualTo(expectedValue)
+    }
 }

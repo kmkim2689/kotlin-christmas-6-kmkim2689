@@ -1,11 +1,14 @@
 package christmas.utils
 
+import christmas.constants.Constants
+import christmas.constants.Constants.NONE
 import christmas.constants.Constants.SEPARATOR_NAME_AMOUNT
 import christmas.constants.Constants.SEPARATOR_ORDER_ITEM
 import christmas.constants.ExceptionMessages.EXCEPTION_DAY_INPUT
 import christmas.constants.ExceptionMessages.EXCEPTION_ORDER_INPUT
 import christmas.domain.Menu.Companion.getMenuByName
 import christmas.domain.OrderItem
+import java.text.DecimalFormat
 
 fun String.toDayNumberOrThrowIllegalArgumentException() = try {
     val dayNumber = this.toInt()
@@ -28,4 +31,15 @@ fun String.toOrderItemOrThrowIllegalArgumentException() = try {
     throw IllegalArgumentException(EXCEPTION_ORDER_INPUT)
 } catch (e: NumberFormatException) {
     throw IllegalArgumentException(EXCEPTION_ORDER_INPUT)
+}
+
+fun Int.toDecimalFormatPrice(): String {
+    val decimalFormat = DecimalFormat(Constants.PRICE_FORMAT)
+    return decimalFormat.format(this)
+}
+
+fun Int.toDecimalFormatAdvantagePrice(): String {
+    val decimalFormat = DecimalFormat("${Constants.SIGN_DISCOUNT}${Constants.PRICE_FORMAT}")
+    if (this == 0) return NONE
+    return decimalFormat.format(this)
 }
