@@ -39,4 +39,12 @@ class AdvantageManager(
         return AdvantageItem("크리스마스 디데이 할인")
     }
 
+    fun getExclusiveDiscount(): AdvantageItem {
+        if (dayOfReservation % 7 == 3 || dayOfReservation == 25) {
+            return AdvantageItem("특별 할인", 1000)
+        }
+        return AdvantageItem("특별 할인")
+    }
+
+
 }
