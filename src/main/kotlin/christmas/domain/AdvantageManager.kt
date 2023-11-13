@@ -17,6 +17,14 @@ class AdvantageManager(
 
     private val dayOfReservation = reservationInfo.dayOfReservation
 
+    fun getCalculatedTotalAdvantages(): List<AdvantageItem> = mutableListOf(
+        getDdayDiscount(),
+        getWeekdayDiscount(),
+        getWeekendDiscount(),
+        getExclusiveDiscount(),
+        getPresentationEventAmount()
+    ).filter { it.advantageAmount > 0 }
+
     fun getPresentationResult() = when (getFreeChampagneOrNot()) {
         true -> CHAMPAGNE_PRESENTATION
         false -> NONE
