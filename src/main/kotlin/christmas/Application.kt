@@ -1,5 +1,7 @@
 package christmas
 
-fun main() {
+import christmas.controller.ReservationController
 
+fun main() {
+    ReservationController.startReservation()
 }
