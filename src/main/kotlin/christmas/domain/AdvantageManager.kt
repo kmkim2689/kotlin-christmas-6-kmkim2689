@@ -17,6 +17,13 @@ class AdvantageManager(
 
     private val dayOfReservation = reservationInfo.dayOfReservation
 
+    fun getTotalAdvantagePrice(): Int {
+        val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
+        return calculatedTotalAdvantages.sumOf {
+            it.advantageAmount
+        }
+    }
+
     fun getTotalPriceAfterDiscount(): Int {
         val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
         return totalPrice - calculatedTotalAdvantages.sumOf {
