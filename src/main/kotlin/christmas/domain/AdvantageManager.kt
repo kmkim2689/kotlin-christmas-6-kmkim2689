@@ -17,6 +17,13 @@ class AdvantageManager(
 
     private val dayOfReservation = reservationInfo.dayOfReservation
 
+    fun getTotalPriceAfterDiscount(): Int {
+        val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
+        return totalPrice - calculatedTotalAdvantages.sumOf {
+            if (it.advantageName != "증정 이벤트") it.advantageAmount else 0
+        }
+    }
+
     fun getCalculatedTotalAdvantages(): List<AdvantageItem> = mutableListOf(
         getDdayDiscount(),
         getWeekdayDiscount(),

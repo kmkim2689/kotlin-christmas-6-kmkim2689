@@ -14,8 +14,6 @@
   - [x] 1부터 31까지의 정수만 입력할 수 있도록 하며, 그 이외의 값을 입력 시 예외 처리
   - [x] 문자열 형태로 입력받은 값을 검증하고 정수로 변환하는 로직은 InputViewMapper에서 확장함수로 구현
 - [x] 입력한 값을 Controller가 ReservationInfo 클래스에 저장
-- [ ] ReservationInfo 클래스에서 입력받은 일에 따른 요일을 계산하는 로직
-  - [ ] 7로 나눈 나머지가 1일 때 금요일 ~ 나누어 떨어질 때 목요일
 
 ### 2. 고객이 주문할 메뉴와 개수를 입력하도록 하는 기능 (View → Controller → Domain)
 - [x] InputView 클래스에서 기능 구현
