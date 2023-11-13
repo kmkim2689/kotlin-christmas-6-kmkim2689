@@ -48,4 +48,8 @@ object OutputView {
         println()
     }
 
+    fun printTotalAdvantageAmount(amount: String) {
+        println(TITLE_ADVANTAGE_AMOUNT)
+        println("$amount$LINE_FEED")
+    }
 }
