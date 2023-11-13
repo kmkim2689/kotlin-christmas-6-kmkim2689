@@ -52,4 +52,9 @@ object OutputView {
         println(TITLE_ADVANTAGE_AMOUNT)
         println("$amount$LINE_FEED")
     }
+
+    fun printPriceAfterDiscount(amount: String) {
+        println(TITLE_PRICE_AFTER_DISCOUNT)
+        println("$amount$LINE_FEED")
+    }
 }
