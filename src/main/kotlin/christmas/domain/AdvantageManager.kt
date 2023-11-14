@@ -51,7 +51,7 @@ class AdvantageManager(
         }
     }
 
-    fun getAdvantageAmount(advantageItem: AdvantageItem): Int {
+    private fun getAdvantageAmount(advantageItem: AdvantageItem): Int {
         if (advantageItem.advantageName != ADVANTAGE_PRESENTATION) {
             return advantageItem.advantageAmount
         }
@@ -59,7 +59,7 @@ class AdvantageManager(
         return 0
     }
 
-    fun getCalculatedTotalAdvantages(): List<AdvantageItem> = mutableListOf(
+    private fun getCalculatedTotalAdvantages(): List<AdvantageItem> = mutableListOf(
         getDdayDiscount(),
         getWeekdayDiscount(),
         getWeekendDiscount(),

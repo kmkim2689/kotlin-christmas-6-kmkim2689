@@ -2,11 +2,18 @@
 
 ## 고려 사항
 
+### 1. TDD 기반 개발
+
+### 2. MVC 패턴 적용
 
 ## 구현 사항
-### 0. 카테고리 및 메뉴에 대한 Enum Class 구현
-- [x] Category Enum Class : 카테고리명과 평일/주말 할인가격에 대한 정보를 담고 있음
-- [x] Menu Enum Class : Category와 가격으로 구성
+### 0. 카테고리 및 메뉴, 혜택에 대한 Enum Class, Data Class 구현
+- [x] Category Enum Class : 메뉴의 카테고리를 표현하기 위한 클래스로, 생성자로 카테고리명과 평일/주말 할인가격에 대한 정보를 담고 있음
+- [x] Menu Enum Class : 사용자가 고를 수 있는 메뉴들이 자식 클래스로 존재하며, 생성자는 Category와 가격으로 구성
+- [x] Badge Enum Class : 뱃지 종류 별로 존재하며, 생성자로 문자열 형태의 뱃지명이 존재
+- [x] AdvantageItem Data Class : 혜택의 이름과 혜택 금액으로 이뤄짐
+- [x] OrderItem Data Class : 사용자가 입력한 값을 토대로 구성되며, Menu와 주문 수량(정수)으로 구성
+- [x] ReservationInfo Data Class : 사용자가 입력한 값을 토대로 구성되며, 예약일(정수)과 OrderItem의 리스트로 구성 
 
 ### 1. 고객이 12월 중 방문일을 입력하도록 하는 기능 (View → Controller → Domain)
 - [x] InputView 클래스에서 기능 구현
@@ -33,7 +40,7 @@
 ### 3. 고객이 주문한 메뉴를 표출하는 기능 (Domain → Controller → View)
 - [x] OutputView 클래스에서 출력 구현
   - [x] ReservationInfo 클래스로부터 Menu 데이터 클래스의 리스트 형태로 보존되어 있는 메뉴 정보를 가져와 한 줄씩 메뉴명과 수량을 출력한다.
-  - [x] `${메뉴명} ${수량}개` 형태로 표출한다.
+  - [x] `"메뉴명" "수량"개` 형태로 표출한다.
 
 ### 4. 할인 전 총주문 금액을 표출하는 기능 (Domain → Controller → View)
 - [x] ReservationInfo 클래스에서 총 주문 금액을 계산하는 메소드 구현
@@ -43,13 +50,14 @@
   
 
 ### 5. 증정 메뉴를 표출하는 기능 (Domain → Controller → View)
-- [x] ReservationInfo 저장되어 있는 할인 전 총 주문 금액을 활용하여 120,000 이상 시 true, 그렇지 않을 시 false 반환
+- [x] ReservationInfo에 저장되어 있는 할인 전 총 주문 금액을 활용하여 120,000 이상 시 true, 그렇지 않을 시 false 반환
 - [x] Controller에서 증정 여부가 true일 때 "샴페인 1개", false일 때 "없음"을 OutputView에 전달 
 - [x] OutputView 클래스에서 출력 구현
 
 ### 6. 혜택 내역을 계산하고 표출하는 기능 (Domain → Controller → View)
-- [x] ReservationInfo 할인 전 총 주문 금액을 바탕으로, 10,000원 이상인지 분기처리
-  - [x] 10,000원을 넘지 못하면 0을 반환하고 그렇지 않다면 할인 로직을 진행
+- [x] 모든 혜택 내역은 AdvantageItem으로 이뤄진 리스트 형태로 반환한다.
+- [x] ReservationInfo의 할인 전 총 주문 금액을 바탕으로, 10,000원 이상인지 분기처리
+  - [x] 10,000원을 넘지 못하면 바로 빈 리스트를 반환하고 그렇지 않다면 할인 로직을 진행
 - [x] ReservationInfo 할인/혜택 로직을 구현 : 네 가지 대분류
   - [x] **<메뉴와 무관한 할인> <1일 ~ 25일> 디데이 할인**
     - [x] 입력받은 일에 따라 할인 금액을 산출
