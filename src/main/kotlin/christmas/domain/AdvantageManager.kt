@@ -47,8 +47,16 @@ class AdvantageManager(
     fun getTotalPriceAfterDiscount(): Int {
         val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
         return totalPrice - calculatedTotalAdvantages.sumOf {
-            if (it.advantageName != ADVANTAGE_PRESENTATION) it.advantageAmount else 0
+            getAdvantageAmount(it)
         }
+    }
+
+    fun getAdvantageAmount(advantageItem: AdvantageItem): Int {
+        if (advantageItem.advantageName != ADVANTAGE_PRESENTATION) {
+            return advantageItem.advantageAmount
+        }
+
+        return 0
     }
 
     fun getCalculatedTotalAdvantages(): List<AdvantageItem> = mutableListOf(
