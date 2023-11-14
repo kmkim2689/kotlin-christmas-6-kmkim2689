@@ -31,35 +31,9 @@ class AdvantageManager(
 ) {
 
     private val dayOfReservation = reservationInfo.dayOfReservation
+    private val getFreeChampagneOrNot = totalPrice >= CHAMPAGNE_PRESENTATION_PRICE
 
-    fun getTotalAdvantages(): List<AdvantageItem> {
-        if (totalPrice < ADVANTAGE_CRITERION_PRICE) return emptyList()
-        return getCalculatedTotalAdvantages()
-    }
-
-    fun getTotalAdvantagePrice(): Int {
-        val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
-        return calculatedTotalAdvantages.sumOf {
-            it.advantageAmount
-        }
-    }
-
-    fun getTotalPriceAfterDiscount(): Int {
-        val calculatedTotalAdvantages = getCalculatedTotalAdvantages()
-        return totalPrice - calculatedTotalAdvantages.sumOf {
-            getAdvantageAmount(it)
-        }
-    }
-
-    private fun getAdvantageAmount(advantageItem: AdvantageItem): Int {
-        if (advantageItem.advantageName != ADVANTAGE_PRESENTATION) {
-            return advantageItem.advantageAmount
-        }
-
-        return 0
-    }
-
-    private fun getCalculatedTotalAdvantages(): List<AdvantageItem> = mutableListOf(
+    fun getCalculatedTotalAdvantages(): List<AdvantageItem> = mutableListOf(
         getDdayDiscount(),
         getWeekdayDiscount(),
         getWeekendDiscount(),
@@ -67,24 +41,10 @@ class AdvantageManager(
         getPresentationEventAmount()
     ).filter { it.advantageAmount > 0 }
 
-    fun getPresentationResult() = when (getFreeChampagneOrNot()) {
-        true -> CHAMPAGNE_PRESENTATION
-        false -> NONE
-    }
-
-    fun getPresentationEventAmount() = when (getFreeChampagneOrNot()) {
+    fun getPresentationEventAmount() = when (getFreeChampagneOrNot) {
         true -> AdvantageItem(ADVANTAGE_PRESENTATION, PRICE_CHAMPAGNE)
         false -> AdvantageItem(ADVANTAGE_PRESENTATION)
     }
-
-    fun getBadge(totalAdvantageAmount: Int): Badge = when {
-        totalAdvantageAmount >= BADGE_SANTA_TOTAL_ADVANTAGE -> Badge.SANTA
-        totalAdvantageAmount >= BADGE_TREE_TOTAL_ADVANTAGE -> Badge.TREE
-        totalAdvantageAmount >= BADGE_STAR_TOTAL_ADVANTAGE -> Badge.STAR
-        else -> Badge.NONE
-    }
-
-    fun getFreeChampagneOrNot() = totalPrice >= CHAMPAGNE_PRESENTATION_PRICE
 
     fun getDdayDiscount(): AdvantageItem {
         if (dayOfReservation in 1..DAY_CHRISTMAS) {
@@ -117,7 +77,6 @@ class AdvantageManager(
                 discount += it.amount * CATEGORY_DISCOUNT_PRICE
             }
         }
-
         return discount
     }
 
@@ -135,8 +94,6 @@ class AdvantageManager(
                 discount += it.amount * CATEGORY_DISCOUNT_PRICE
             }
         }
-
         return discount
     }
-
 }

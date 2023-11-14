@@ -6,6 +6,7 @@ import christmas.constants.Constants.UNIT_PRICE
 import christmas.constants.StepMessages.STEP_START_RESERVATION
 import christmas.domain.AdvantageManager
 import christmas.domain.ReservationInfo
+import christmas.domain.ResultCalculator
 import christmas.utils.toDecimalFormatAdvantagePrice
 import christmas.utils.toDecimalFormatPrice
 import christmas.view.InputView
@@ -18,23 +19,30 @@ object ReservationController {
         val dayOfReservation = InputView.getDayOfReservation()
         val orderItems = InputView.getOrderList()
         val reservationInfo = ReservationInfo(dayOfReservation, orderItems)
-        val advantageManager = AdvantageManager(reservationInfo.getTotalPriceBeforeDiscounts(), reservationInfo)
+        val advantageManager = AdvantageManager(
+            reservationInfo.getTotalPriceBeforeDiscounts(),
+            reservationInfo
+        )
+        val resultCalculator = ResultCalculator(
+            reservationInfo.getTotalPriceBeforeDiscounts(),
+            advantageManager.getCalculatedTotalAdvantages()
+        )
 
-        printReservationResult(reservationInfo, advantageManager)
+        printReservationResult(reservationInfo, resultCalculator)
     }
 
     private fun printReservationResult(
         reservationInfo: ReservationInfo,
-        advantageManager: AdvantageManager
+        resultCalculator: ResultCalculator
     ) {
         OutputView.apply {
             printOrders(reservationInfo)
             printTotalPriceBeforeDiscounts(reservationInfo.getTotalPriceBeforeDiscounts().toDecimalFormatPrice())
-            printPresentationResult(advantageManager.getPresentationResult())
-            printAdvantages(advantageManager.getTotalAdvantages())
-            printTotalAdvantageAmount(advantageManager.getTotalAdvantagePrice().toDecimalFormatAdvantagePrice())
-            printPriceAfterDiscount(advantageManager.getTotalPriceAfterDiscount().toDecimalFormatPrice())
-            printBadge(advantageManager.getBadge(advantageManager.getTotalAdvantagePrice()))
+            printPresentationResult(resultCalculator.getPresentationResult())
+            printAdvantages(resultCalculator.getTotalAdvantages())
+            printTotalAdvantageAmount(resultCalculator.getTotalAdvantagePrice().toDecimalFormatAdvantagePrice())
+            printPriceAfterDiscount(resultCalculator.getTotalPriceAfterDiscount().toDecimalFormatPrice())
+            printBadge(resultCalculator.getBadge())
         }
     }
 }
