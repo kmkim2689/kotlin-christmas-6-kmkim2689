@@ -74,17 +74,19 @@
 - [x] OutputView에서 출력
 
 ### 7. 총 혜택 금액을 계산하고 표출하는 기능 (Domain → Controller → View)
-- [x] 6.에서 산출된 각 혜택 금액(Advantage 데이터 클래스의 amount 값)을 모두 더한 금액을 Domain에 저장
+- [x] ResultCalculator에서 6.에서 산출된 각 혜택 금액(Advantage 데이터 클래스의 amount 값)을 모두 더한 금액을 저장
 - [x] Controller은 Domain으로부터 총 혜택 금액을 가져와 View에 표출할 수 있는 문자열 형태로 가공
   - [x] 금액 앞에 "-" 문자열을, 금액 뒤에는 "원" 문자열을 추가
   - [x] 1,000단위로 "," 표식 추가
 - [x] OutputView에서 출력
 
 ### 8. 할인 후 금액을 계산하고 표출하는 기능 (Domain → Controller → View)
+- [x] ResultCalculator에서 할인 후 금액을 계산
 - [x] Controller에서 금액 뒤에 "원"을 붙여 OutputView에 전달
 - [x] OutputView에서 출력
 
 ### 9. 수령할 이벤트 배지를 표출하는 기능 (Domain → Controller → View)
+- [x] ResultCalculator에서 수령할 이벤트 배지를 산출
 - [x] 7.에서 산출된 총 혜택 금액에 따라 증정 배지를 분기 처리
 - [x] 총 혜택 금액에 따라 "없음" / "별" / "트리" / "산타"를 증정 배지로 설정
 - [x] OutputView에서 출력
